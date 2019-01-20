@@ -21,8 +21,11 @@ def plot_df(df, path):
     plt.close()
 
 
-def plotly_df(df, filename='plots/test.html'):
-    make_dir()
+
+def plotly_df(df, dir='plots', filename='test.html'):
+    make_dir(dir)
+
+    filename=dir + '/' + filename
 
     py_offline.plot([{
         'x': df.index,

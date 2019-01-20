@@ -1,8 +1,9 @@
 import pandas as pd
 import plot
+import config
 
-def get_df():
-	df = pd.read_csv('tempratures')
+def get_df(tempratures_location):
+	df = pd.read_csv(tempratures_location)
 	df['epoch'] = pd.to_datetime(df['epoch'], unit='ms')
 	df = df.set_index('epoch')
 	df.columns = df.columns.str.strip()
@@ -11,6 +12,8 @@ def get_df():
 
 	return df
 
-df = get_df()
+config = config.get_yaml('config.yaml')
 
-plot.plotly_df(df)
+df = get_df(config['tempratures_path'])
+
+plot.plotly_df(df, dir=config['plot_location'])
