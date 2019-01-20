@@ -22,7 +22,7 @@ def plot_df(df, path):
 
 
 
-def plotly_df(df, dir='plots', filename='test.html'):
+def plotly_df(df, dir='plots', filename='test.html', auto_open=False):
     make_dir(dir)
 
     filename=dir + '/' + filename
@@ -31,7 +31,7 @@ def plotly_df(df, dir='plots', filename='test.html'):
         'x': df.index,
         'y': df[col],
         'name': col
-    } for col in df.columns], filename=filename, auto_open=True)
+    } for col in df.columns], filename=filename, auto_open=auto_open)
 
 
 def plotly_df_multi(df, df2, filename='plots/test.html'):
