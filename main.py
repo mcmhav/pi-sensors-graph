@@ -1,10 +1,17 @@
 import pandas as pd
 import plot
 import config
+import sys
+import getopt
 
 def make_plot(config_path):
-    def get_df(tempratures_location):
-        df = pd.read_csv(tempratures_location)
+    def get_df(tempratures_location, from_url=False):
+        if from_url:
+            s = requests.get(tempratures_location).content
+            df = pd.read_csv(io.StringIO(s.decode('utf-8')))
+        else:
+            df = pd.read_csv(tempratures_location)
+
         df['epoch'] = pd.to_datetime(df['epoch'], unit='ms')
         df = df.set_index('epoch')
         df.columns = df.columns.str.strip()
@@ -13,11 +20,15 @@ def make_plot(config_path):
 
         return df
 
-    config = config.get_yaml(config_path)
+    configs = config.get_yaml(config_path)
+    
+    from_url = False
+    if from_url in configs:
+        from_url = configs['from_url']
 
-    df = get_df(config['tempratures_path'])
+    df = get_df(configs['tempratures_path'])
 
-    plot.plotly_df(df, dir=config['plot_location'], auto_open=False)
+    plot.plotly_df(df, dir=configs['plot_location'], auto_open=False)
 
 def help():
    print('heeeelp')

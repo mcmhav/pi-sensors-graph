@@ -1,2 +1,3 @@
-tempratures_path: '~/tmp/tempratures'
-plot_location: '~/tmp'
+tempratures_path: 'https://slabbery-beaver-6557.dataplicity.io/tempratures.csv'
+tempratures_from_url: True
+plot_location: 'plots'

@@ -1,3 +1,4 @@
 tempratures
 *.py~
 plots
+.DS_Store

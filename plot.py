@@ -9,7 +9,7 @@ import plotly.plotly as py
 
 def make_dir(dir='plots'):
     if not os.path.exists(dir):
-        os.mkdir(dir)
+        os.makedirs(dir)
 
 def plot_df(df, path):
     df['epoch'] = pd.to_datetime(
