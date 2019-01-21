@@ -1,3 +1,4 @@
 tempratures_path: 'https://slabbery-beaver-6557.dataplicity.io/tempratures.csv'
 tempratures_from_url: True
 plot_location: 'plots'
+auto_open: True

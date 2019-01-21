@@ -26,9 +26,13 @@ def make_plot(config_path):
     if from_url in configs:
         from_url = configs['from_url']
 
+    auto_open = True
+    if auto_open in configs:
+        auto_open = configs['auto_open']
+
     df = get_df(configs['tempratures_path'])
 
-    plot.plotly_df(df, dir=configs['plot_location'], auto_open=False)
+    plot.plotly_df(df, dir=configs['plot_location'], auto_open=auto_open)
 
 def help():
    print('heeeelp')
